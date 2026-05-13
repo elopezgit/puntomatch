@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PuntoMatch | El Club de Pádel Definitivo</title>
+    <meta name="description" content="Reserva tu turno, mejora tu nivel con nuestros profesores y equípate en nuestro Pro-Shop. La experiencia Elite Pádel.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/1234567890" class="floating-wa" aria-label="Contactar por WhatsApp">
+        <i class="ri-whatsapp-line"></i>
+    </a>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">PUNTO<span class="accent">MATCH</span></a>
+            <nav class="nav-links">
+                <a href="#reservas">Reservas</a>
+                <a href="#academia">Academia</a>
+                <a href="#tips">Tips</a>
+                <a href="#shop">Pro-Shop</a>
+            </nav>
+            <a href="#reservas" class="btn-primary nav-cta">Jugar Ahora</a>
+            <button class="mobile-menu-btn"><i class="ri-menu-line"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="line">DOMINA</span>
+                    <span class="line">LA <span class="accent text-glow">PISTA</span></span>
+                </h1>
+                <p class="hero-subtitle">Instalaciones premium. Profesionales de élite. La experiencia definitiva de pádel.</p>
+                <div class="hero-actions">
+                    <a href="#reservas" class="btn-primary btn-large">Reserva tu turno</a>
+                    <a href="#academia" class="btn-secondary btn-large">Conoce la academia</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Descubre más</span>
+                <i class="ri-arrow-down-line"></i>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section class="booking-section" id="reservas">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Asegura tu <span class="accent">Cancha</span></h2>
+                    <p class="section-desc">Selecciona tu día y horario ideal en 3 simples pasos.</p>
+                </div>
+
+                <div class="booking-widget glass-panel">
+                    <!-- Step 1: Calendar & Slots -->
+                    <div class="booking-step active" id="step-1">
+                        <div class="booking-grid">
+                            <!-- Date Selector -->
+                            <div class="date-selector">
+                                <h3>1. Elige el día</h3>
+                                <div class="days-scroll" id="days-container">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Time Selector -->
+                            <div class="time-selector">
+                                <h3>2. Elige el horario</h3>
+                                <div class="slots-grid" id="slots-container">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-actions right">
+                            <button class="btn-primary" id="btn-next-step" disabled>Continuar al Pago</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Payment & Upload -->
+                    <div class="booking-step" id="step-2">
+                        <div class="payment-flow">
+                            <button class="btn-back" id="btn-back-step"><i class="ri-arrow-left-line"></i> Volver</button>
+                            <div class="payment-details">
+                                <h3>3. Completa tu reserva</h3>
+                                <div class="selected-summary">
+                                    <span id="summary-date">Jueves, 12 Oct</span>
+                                    <span class="dot">•</span>
+                                    <span id="summary-time" class="accent">19:30 hs</span>
+                                    <span class="dot">•</span>
+                                    <span>Cancha 2</span>
+                                </div>
+                                
+                                <div class="payment-instructions glass-panel-inner">
+                                    <h4>Datos para Transferencia</h4>
+                                    <p>Monto: <strong>$15.000</strong></p>
+                                    <p>CBU: <span class="copy-text">0000123456789012345678</span> <i class="ri-file-copy-line"></i></p>
+                                    <p>Alias: <span class="copy-text">PUNTO.MATCH.PADEL</span> <i class="ri-file-copy-line"></i></p>
+                                </div>
+
+                                <form id="booking-form" class="booking-form">
+                                    <div class="input-group">
+                                        <input type="text" id="user-name" placeholder="Tu Nombre Completo" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="tel" id="user-phone" placeholder="WhatsApp" required>
+                                    </div>
+
+                                    <div class="upload-area" id="upload-area">
+                                        <input type="file" id="receipt-upload" accept="image/*,.pdf" required hidden>
+                                        <div class="upload-content">
+                                            <i class="ri-upload-cloud-2-line"></i>
+                                            <p>Arrastra tu comprobante aquí o <span>explora</span></p>
+                                            <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn-primary btn-full">Confirmar Reserva</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Success -->
+                    <div class="booking-step" id="step-3">
+                        <div class="success-state text-center">
+                            <div class="success-icon">
+                                <i class="ri-time-line"></i>
+                            </div>
+                            <h3>Pendiente de Verificación</h3>
+                            <p>Hemos recibido tu comprobante. En breve verificaremos el pago y te enviaremos el Ticket de Reserva por WhatsApp.</p>
+                            <button class="btn-secondary mt-4" onclick="location.reload()">Hacer otra reserva</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academy Section -->
+        <section class="academy-section" id="academia">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Sube de <span class="accent">Nivel</span></h2>
+                    <p class="section-desc">Conecta con nuestros instructores certificados y mejora tu técnica.</p>
+                </div>
+                
+                <div class="coaches-grid">
+                    <!-- Coach 1 -->
+                    <div class="coach-card glass-panel gs-reveal">
+                        <div class="coach-img">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=400&q=80" alt="Profesor">
+                            <div class="coach-badge">Head Coach</div>
+                        </div>
+                        <div class="coach-info">
+                            <h3>Martín Di Nenno</h3>
+                            <p class="coach-spec">Especialidad: Táctica y Volea</p>
+                            <div class="coach-stats">
+                                <span><i class="ri-star-fill"></i> 4.9</span>
+                                <span>+500 Alumnos</span>
+                            </div>
+                            <button class="btn-secondary btn-full">Consultar Clases</button>
+                        </div>
+                    </div>
+                    <!-- Coach 2 -->
+                    <div class="coach-card glass-panel gs-reveal">
+                        <div class="coach-img">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Profesora">
+                        </div>
+                        <div class="coach-info">
+                            <h3>Sofía Araujo</h3>
+                            <p class="coach-spec">Especialidad: Iniciación y Bandeja</p>
+                            <div class="coach-stats">
+                                <span><i class="ri-star-fill"></i> 5.0</span>
+                                <span>+300 Alumnos</span>
+                            </div>
+                            <button class="btn-secondary btn-full">Consultar Clases</button>
+                        </div>
+                    </div>
+                    <!-- Coach 3 -->
+                    <div class="coach-card glass-panel gs-reveal">
+                        <div class="coach-img">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Profesor">
+                        </div>
+                        <div class="coach-info">
+                            <h3>Alejandro Galán</h3>
+                            <p class="coach-spec">Especialidad: Potencia y Remate</p>
+                            <div class="coach-stats">
+                                <span><i class="ri-star-fill"></i> 4.8</span>
+                                <span>+450 Alumnos</span>
+                            </div>
+                            <button class="btn-secondary btn-full">Consultar Clases</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Tips -->
+        <section class="tips-section" id="tips">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Voz de <span class="accent">Experto</span></h2>
+                    <p class="section-desc">Tips semanales para dominar cada rincón de la pista.</p>
+                </div>
+
+                <div class="video-grid">
+                    <div class="video-card glass-panel gs-reveal">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1622227422176-1b4e2808c1a6?auto=format&fit=crop&w=600&q=80" alt="Tip 1">
+                            <div class="play-btn"><i class="ri-play-fill"></i></div>
+                            <span class="video-duration">1:15</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>El secreto de la víbora perfecta</h4>
+                            <p>Martín te enseña el grip y la aceleración.</p>
+                        </div>
+                    </div>
+                    <div class="video-card glass-panel gs-reveal" style="transition-delay: 0.1s;">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1622227432807-91af5901f941?auto=format&fit=crop&w=600&q=80" alt="Tip 2">
+                            <div class="play-btn"><i class="ri-play-fill"></i></div>
+                            <span class="video-duration">0:59</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>Defensa en doble pared</h4>
+                            <p>Posicionamiento y lectura de la pelota.</p>
+                        </div>
+                    </div>
+                    <div class="video-card glass-panel gs-reveal" style="transition-delay: 0.2s;">
+                        <div class="video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34d8?auto=format&fit=crop&w=600&q=80" alt="Tip 3">
+                            <div class="play-btn"><i class="ri-play-fill"></i></div>
+                            <span class="video-duration">2:10</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>Mejora tu saque</h4>
+                            <p>Táctica y dirección para tomar la red.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pro Shop -->
+        <section class="shop-section" id="shop">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Pro<span class="accent">-Shop</span></h2>
+                    <p class="section-desc">Equípate con lo mejor. Estilo y rendimiento en cada golpe.</p>
+                </div>
+
+                <div class="shop-grid">
+                    <div class="product-card glass-panel gs-reveal">
+                        <div class="product-3d-wrapper">
+                            <!-- Placeholder for 3D effect / Floating Paddle -->
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1622227422176-1b4e2808c1a6?auto=format&fit=crop&w=400&q=80" alt="Paleta" class="floating-img" style="opacity:0.3; filter: grayscale(1);">
+                                <div class="fake-paddle"></div>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-tag">Nuevo</span>
+                            <h3>Nox AT10 Genius</h3>
+                            <p>Carbono 18K, control absoluto.</p>
+                            <div class="product-footer">
+                                <span class="price">$280.000</span>
+                                <button class="btn-icon"><i class="ri-shopping-cart-2-line"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card glass-panel gs-reveal" style="transition-delay: 0.1s;">
+                        <div class="product-3d-wrapper">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1622227432807-91af5901f941?auto=format&fit=crop&w=400&q=80" alt="Paleta" class="floating-img" style="opacity:0.3; filter: grayscale(1);">
+                                <div class="fake-paddle" style="background: linear-gradient(135deg, #ff0055, #2a0845);"></div>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-tag hot">Best Seller</span>
+                            <h3>Babolat Technical Viper</h3>
+                            <p>Potencia explosiva para atacantes.</p>
+                            <div class="product-footer">
+                                <span class="price">$310.000</span>
+                                <button class="btn-icon"><i class="ri-shopping-cart-2-line"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card glass-panel gs-reveal" style="transition-delay: 0.2s;">
+                        <div class="product-3d-wrapper">
+                            <div class="product-img-container">
+                                <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34d8?auto=format&fit=crop&w=400&q=80" alt="Accesorios" class="floating-img" style="opacity:0.3; filter: grayscale(1);">
+                                <div class="fake-accessories"></div>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-tag">Esencial</span>
+                            <h3>Pack Overgrips x3</h3>
+                            <p>Máxima adherencia y absorción.</p>
+                            <div class="product-footer">
+                                <span class="price">$15.000</span>
+                                <button class="btn-icon"><i class="ri-shopping-cart-2-line"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <h2 class="logo">PUNTO<span class="accent">MATCH</span></h2>
+            <p class="footer-desc">El ecosistema definitivo para amantes del pádel.</p>
+            <div class="social-links">
+                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="#"><i class="ri-tiktok-fill"></i></a>
+                <a href="#"><i class="ri-youtube-line"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 PuntoMatch. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP & Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

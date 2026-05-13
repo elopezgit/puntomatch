@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-green: #ccff00;
+  --color-neon-blue: #00f3ff;
+  --font-sans: "Outfit", "Inter", sans-serif;
+}
+
+body {
+  background-color: #020617; /* slate-950 */
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+/* Glassmorphism utils */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
