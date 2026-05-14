@@ -1,19 +1,26 @@
 import { create } from 'zustand'
 
 export interface Court {
-  id: number
+  id: string
   name: string
-  pricePerHour: number
+}
+
+export interface TimeSlot {
+  id: string
+  court_id?: string
+  slot_start: string
+  slot_end: string
+  price: number
 }
 
 interface BookingState {
   selectedCourt: Court | null
   selectedDate: Date
-  selectedSlots: string[]
+  selectedSlots: TimeSlot[]
   totalPrice: number
   selectCourt: (court: Court) => void
   setDate: (date: Date) => void
-  toggleSlot: (slot: string) => void
+  toggleSlot: (slot: TimeSlot) => void
   clearBooking: () => void
 }
 
@@ -23,24 +30,23 @@ export const useBookingStore = create<BookingState>((set) => ({
   selectedSlots: [],
   totalPrice: 0,
   
-  selectCourt: (court) => set((state) => ({ 
+  selectCourt: (court) => set({ 
     selectedCourt: court,
-    totalPrice: state.selectedSlots.length * court.pricePerHour
-  })),
+    selectedSlots: [], // clear slots on court change
+    totalPrice: 0
+  }),
   
   setDate: (date) => set({ selectedDate: date, selectedSlots: [], totalPrice: 0 }),
   
   toggleSlot: (slot) => set((state) => {
-    const isSelected = state.selectedSlots.includes(slot)
+    const isSelected = state.selectedSlots.some(s => s.id === slot.id)
     const newSlots = isSelected 
-      ? state.selectedSlots.filter(s => s !== slot)
-      : [...state.selectedSlots, slot].sort()
+      ? state.selectedSlots.filter(s => s.id !== slot.id)
+      : [...state.selectedSlots, slot].sort((a, b) => a.slot_start.localeCompare(b.slot_start))
       
-    const price = state.selectedCourt ? state.selectedCourt.pricePerHour : 0
-    
     return {
       selectedSlots: newSlots,
-      totalPrice: newSlots.length * price
+      totalPrice: newSlots.reduce((acc, curr) => acc + Number(curr.price), 0)
     }
   }),
   
